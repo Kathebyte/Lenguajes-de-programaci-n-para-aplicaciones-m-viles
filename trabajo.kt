@@ -1,7 +1,5 @@
 fun main() {
     println("Lenguajes de programación para aplicaciones móviles")
-    val nombre = nombreEstudiante()
-    println("Hola $nombre")
 
     // pedir numero de estudiantes
     val numeroEstudiantes = totalCantidadEstudiantes()
@@ -29,6 +27,8 @@ fun main() {
         var finalNota = calcularPromedio(n1, n2, n3)
         finales[i] = finalNota
     }
+
+    ordenarEstudiantes(nombres, finales)
 }
 
 fun totalCantidadEstudiantes(): Int {
@@ -43,4 +43,14 @@ fun nombreEstudiante(): String {
 
 fun calcularPromedio(n1: Double, n2: Double, n3: Double): Double {
     return (n1 + n2 + n3) / 3
+}
+
+fun ordenarEstudiantes(nombres: Array<String>, finales: Array<Double>) {
+
+    val posicionesOrdenadas = nombres.indices.sortedByDescending { finales[it] }
+
+    println("\n Lista de los Estudiantes Ordenada")
+    for (i in posicionesOrdenadas) {
+        println("${nombres[i]} - ${"%.2f".format(finales[i])}")
+    }
 }
